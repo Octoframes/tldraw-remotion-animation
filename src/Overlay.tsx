@@ -51,7 +51,7 @@ export const Overlay: React.FC = () => {
 	});
 
 	const rotate = interpolate(out, [0, 1], [0, -Math.PI / 20]);
-	const outY = interpolate(out, [0, 1], [0, -500]);
+	const outY = interpolate(out, [0, 1], [0, -1300]);
 
 
 	console.log(outY)
@@ -60,13 +60,14 @@ export const Overlay: React.FC = () => {
 		return {
 			position: 'absolute',
 			backgroundColor: 'white',
-			borderRadius: 25,
-			right: 90,
-			top: 90,
-			scale: String(scale),
+			borderRadius: 0,
+			width: 600,
+			height : 400,
+			left: 400,
+			top: 400,
+			scale: String(scale*2),
 			translate: `0 ${outY}px`,
 			rotate: `${rotate}rad`,
-			padding: 40,
 		};
 	}, [scale, outY, rotate]);
 
@@ -74,8 +75,8 @@ export const Overlay: React.FC = () => {
 		<AbsoluteFill>
 			<div style={container}>
 			<Tldraw />
-				<div style={title}>Look</div>
-				<div style={text}>I'm an overlay!</div>
+				{/* <div style={title}>Look</div> */}
+				{/* <div style={text}>I'm an overlay!</div> */}
 
 			</div>
 		</AbsoluteFill>
