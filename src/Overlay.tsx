@@ -5,30 +5,13 @@ import {
 	useCurrentFrame,
 	useVideoConfig,
 } from 'remotion';
-import React, {useEffect, useMemo} from 'react';
-import {loadFont} from '@remotion/google-fonts/Roboto';
+import React, {useMemo} from 'react';
 import {TDShapeType, Tldraw, TldrawApp} from '@tldraw/tldraw';
-
-const {fontFamily} = loadFont();
-
-const title: React.CSSProperties = {
-	fontFamily,
-	fontSize: 80,
-	fontWeight: 'bold',
-};
-
-const text: React.CSSProperties = {
-	fontWeight: 'bold',
-	fontFamily,
-	fontSize: 40,
-	color: '#4290F5',
-};
 
 const disappearBeforeEnd = 20;
 
 export const Overlay: React.FC = () => {
-	const [points] = React.useState();
-	const [app, setApp] = React.useState();
+	const [app, setApp] = React.useState<any[]>();
 
 	const frame = useCurrentFrame();
 	const {fps, durationInFrames} = useVideoConfig();
