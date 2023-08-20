@@ -11,7 +11,7 @@ import {TDShapeType, Tldraw, TldrawApp} from '@tldraw/tldraw';
 const disappearBeforeEnd = 20;
 
 export const Overlay: React.FC = () => {
-	const [app, setApp] = React.useState<any[]>();
+	const [app, setApp] = React.useState<TldrawApp | null>(null);
 
 	const frame = useCurrentFrame();
 	const {fps, durationInFrames} = useVideoConfig();
