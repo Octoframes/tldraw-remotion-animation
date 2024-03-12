@@ -1,4 +1,4 @@
-import {Composition, Still} from 'remotion';
+import {Composition} from 'remotion';
 import {Overlay} from './Overlay';
 
 export const RemotionRoot: React.FC = () => {
@@ -12,7 +12,6 @@ export const RemotionRoot: React.FC = () => {
 				width={1920}
 				height={1080}
 			/>
-			
 		</>
 	);
 };
