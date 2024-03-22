@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
 	AbsoluteFill,
 	interpolate,
@@ -11,8 +11,11 @@ import '@tldraw/tldraw/tldraw.css';
 export const Overlay: React.FC = () => {
 	const frame = useCurrentFrame();
 	const {durationInFrames} = useVideoConfig();
+	const [editorInstance, setEditorInstance] = useState(null);
 
 	const handleMount = (editor) => {
+		setEditorInstance(editor); // Store the editor instance for later use
+
 		const rectangleId = createShapeId('rectangle');
 
 		editor.createShapes([
@@ -27,16 +30,27 @@ export const Overlay: React.FC = () => {
 					h: 75,
 					dash: 'draw',
 					color: 'blue',
-					size: 'm',
+					size: 'xl',
 				},
 			},
 		]);
 	};
 
-	const moveToLeft = interpolate(frame, [0, durationInFrames], [0, -1000], {
+	const xCoordinate = interpolate(frame, [0, durationInFrames], [0, 1000], {
 		extrapolateLeft: 'clamp',
 		extrapolateRight: 'clamp',
 	});
+
+	useEffect(() => {
+		if (editorInstance) {
+			editorInstance.updateShapes([
+				{
+					id: createShapeId('rectangle'),
+					x: xCoordinate,
+				},
+			]);
+		}
+	}, [xCoordinate, editorInstance]);
 
 	return (
 		<AbsoluteFill>
@@ -44,7 +58,7 @@ export const Overlay: React.FC = () => {
 				style={{
 					position: 'fixed',
 					inset: 0,
-					transform: `translateX(${moveToLeft}px)`,
+					// transform: `translateX(${xCoordinate}px)`,
 				}}
 			>
 				<Tldraw onMount={handleMount}></Tldraw>
