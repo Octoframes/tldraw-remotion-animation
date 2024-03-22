@@ -45,13 +45,16 @@ export const Overlay: React.FC = () => {
           h: 100,
           dash: "draw",
           color: "yellow",
-          size: "m",
+          size: "xl",
         },
       },
       {
         id: arrowId,
         type: "arrow",
+
         props: {
+          size: "xl",
+
           start: {
             type: "binding",
             boundShapeId: rectangleId1,
@@ -93,7 +96,7 @@ export const Overlay: React.FC = () => {
 				style={{
 					position: 'fixed',
 					inset: 0,
-					// transform: `translateX(${xCoordinate}px)`,
+					// transform: `translateX(${-xCoordinate}px)`,  // this is fun to play with
 				}}
 			>
 				<Tldraw onMount={handleMount}></Tldraw>
